@@ -75,13 +75,14 @@ public final class Activator implements BundleActivator,
 						new HelloWorldServlet("/helloworld/hs"), // registered
 						// servlet
 						initParams, httpContext);
-				httpService.registerServlet("/*", // alias - using /* as alias
-						// does work around issue PAXWEB-108
-						new HelloWorldServlet("/"), // registered servlet
-						initParams, httpContext);
+
 				// register images as resources
 				httpService
 						.registerResources("/images", "/images", httpContext);
+
+				// register alternative alias for images resources
+				httpService
+						.registerResources("/alt-images", "/images", httpContext);
 			} catch (ServletException e) {
 				e.printStackTrace();
 			} catch (NamespaceException e) {
@@ -102,8 +103,8 @@ public final class Activator implements BundleActivator,
 							   HttpService service) {
 		try {
 			service.unregister("/helloworld/hs");
-			service.unregister("/*");
 			service.unregister("/images");
+			service.unregister("/alt-images");
 			//CHECKSTYLE:OFF
 		} catch (Exception e) {
 

@@ -108,6 +108,15 @@ public class HttpServiceIntegrationTest extends ITestBase {
 	}
 
 	@Test
+	public void testMultipleResourcesAliasRegisteredForSameName() throws Exception {
+		HttpTestClientFactory.createDefaultTestClient()
+				.doGETandExecuteTest("http://127.0.0.1:8181/images/logo.png");
+
+		HttpTestClientFactory.createDefaultTestClient()
+				.doGETandExecuteTest("http://127.0.0.1:8181/alt-images-2/logo.png");
+	}
+
+	@Test
 	public void testServletPath() throws Exception {
 		HttpTestClientFactory.createDefaultTestClient()
 				.withResponseAssertion("Response must contain 'Servlet Path: '",
