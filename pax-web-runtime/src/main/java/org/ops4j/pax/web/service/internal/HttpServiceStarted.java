@@ -282,7 +282,7 @@ class HttpServiceStarted implements StoppableHttpService {
 			final Servlet servlet = serverController.createResourceServlet(
 					contextModel, alias, name);
 			final ResourceModel model = new ResourceModel(contextModel, servlet,
-					alias, name);
+					alias, alias);
 			try {
 				registerServlet(model);
 			} catch (ServletException e) {
